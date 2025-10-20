@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Steril Medical Services - Professional medical equipment cleaning for hospitals.">
+    <title>Steril Medical Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="duurzaamheid.css">
+</head>
+<body>
+
+    <header id="top">
+        <h1>STERIL</h1>
+        <h1>Medical Services</h1>
+        <p>Professional Medical Equipment Cleaning for Hospitals</p>
+    </header>
+
+    <nav>
+        <a href="index.html" id="logo-link">
+            <img class="logo" src="logonavbar.png" alt="Steril Medical Services Logo">
+        </a>
+
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="nav-links" id="nav-links">
+            <a href="index.html">Home</a>
+            <a href="ourservices.html">Services</a>
+            <a href="aboutus.html">About</a>
+            <a href="duurzaamheid.html">Duurzaamheid</a>
+            <a href="contact.html">Contact</a>
+            <div class="language-toggle1">
+                <button id="lang-btn">NL 🇳🇱</button>
+            </div>
+        </div>
+
+        <div class="language-toggle">
+            <button id="lang-btn2">NL 🇳🇱</button>
+        </div>
+    </nav>
+
+    <div class="main-layout">
+
+         <div class = "left-column">
+            <section id="information">
+            </section>
+         </div>
+
+        <div class="right-column">
+            <section id="about">
+                <h2 id="about-title">Duurzaamheid</h2>
+                <p id="about-text">Steril Medical Services specializes in the cleaning and sterilization of medical equipment for hospitals and healthcare facilities.
+                     We ensure that all equipment is cleaned to the highest standards, promoting safety and hygiene for patients and staff.</p>
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            </section>
+        
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Steril Medical Services. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+        sections.forEach(section => observer.observe(section));
+
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const logo = document.getElementById('logo-link');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('show');
+            });
+        });
+
+        document.addEventListener('click', (event) => {
+        const isClickInsideNav = navLinks.contains(event.target);
+        const isClickOnHamburger = hamburger.contains(event.target);
+
+        if (!isClickInsideNav && !isClickOnHamburger) {
+            navLinks.classList.remove('show');
+        }
+        });
+
+
+        const langBtn = document.getElementById('lang-btn');
+        const langBtn2 = document.getElementById('lang-btn2');
+        let currentLang = 'en';
+
+        langBtn.addEventListener('click', () => {
+            if (currentLang === 'en') {
+                document.getElementById('about-title').textContent = 'Over Ons';
+                document.getElementById('about-text').textContent =
+                    'Steril Medical Services is gespecialiseerd in het reinigen en steriliseren van medische apparatuur voor ziekenhuizen en zorginstellingen. Wij zorgen ervoor dat alle apparatuur volgens de hoogste normen wordt gereinigd, ter bevordering van veiligheid en hygiëne voor patiënten en personeel.';
+                langBtn.textContent = 'EN 🇬🇧';
+                currentLang = 'nl';
+            } else {
+                document.getElementById('about-title').textContent = 'About Us';
+                document.getElementById('about-text').textContent =
+                    'Steril Medical Services specializes in the cleaning and sterilization of medical equipment for hospitals and healthcare facilities. We ensure that all equipment is cleaned to the highest standards, promoting safety and hygiene for patients and staff.';
+                langBtn.textContent = 'NL 🇳🇱';
+                currentLang = 'en';
+            }
+        });
+
+        langBtn2.addEventListener('click', () => {
+            if (currentLang === 'en') {
+                document.getElementById('about-title').textContent = 'Over Ons';
+                document.getElementById('about-text').textContent =
+                    'Steril Medical Services is gespecialiseerd in het reinigen en steriliseren van medische apparatuur voor ziekenhuizen en zorginstellingen. Wij zorgen ervoor dat alle apparatuur volgens de hoogste normen wordt gereinigd, ter bevordering van veiligheid en hygiëne voor patiënten en personeel.';
+                langBtn2.textContent = 'EN 🇬🇧';
+                currentLang = 'nl';
+            } else {
+                document.getElementById('about-title').textContent = 'About Us';
+                document.getElementById('about-text').textContent =
+                    'Steril Medical Services specializes in the cleaning and sterilization of medical equipment for hospitals and healthcare facilities. We ensure that all equipment is cleaned to the highest standards, promoting safety and hygiene for patients and staff.';
+                langBtn2.textContent = 'NL 🇳🇱';
+                currentLang = 'en';
+            }
+        });
+
+    </script>
+</body>
+</html>

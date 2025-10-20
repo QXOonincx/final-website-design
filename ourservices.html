@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Steril Medical Services - Professional medical equipment cleaning for hospitals.">
+    <title>Steril Medical Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="ourservices.css">
+</head>
+
+<body>
+
+    <header id="top">
+        <h1>STERIL</h1>
+        <h1>Medical Services</h1>
+        <p>Professional Medical Equipment Cleaning for Hospitals</p>
+    </header>
+
+    <nav>
+        <a href="index.html" id="logo-link">
+            <img class="logo" src="logonavbar.png" alt="Steril Medical Services Logo">
+        </a>
+
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="nav-links" id="nav-links">
+            <a href="index.html">Home</a>
+            <a href="ourservices.html">Services</a>
+            <a href="aboutus.html">About</a>
+            <a href="duurzaamheid.html">Duurzaamheid</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="language-toggle">
+            <button id="lang-btn2">NL 🇳🇱</button>
+        </div>
+    </nav>
+
+    <div class="main-layout">
+
+         <div class = "left-column">
+            <section id="information">
+            </section>
+         </div>
+
+        <div class="right-column">
+            <section id="services">
+                <h2>Our Services</h2>
+                <ul>
+                    <li>Sterilization of surgical instruments</li>
+                    <li>Cleaning of hospital equipment</li>
+                    <li>Medical device disinfection</li>
+                    <li>Equipment maintenance support</li>
+                </ul>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+            </section>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Steril Medical Services. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+        sections.forEach(section => observer.observe(section));
+
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const logo = document.getElementById('logo-link');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('show');
+            });
+        });
+
+        document.addEventListener('click', (event) => {
+        const isClickInsideNav = navLinks.contains(event.target);
+        const isClickOnHamburger = hamburger.contains(event.target);
+
+        if (!isClickInsideNav && !isClickOnHamburger) {
+            navLinks.classList.remove('show');
+        }
+    });
+    </script>
+</body>
+</html>
+

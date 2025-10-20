@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Steril Medical Services - Professional medical equipment cleaning for hospitals.">
+<title>Steril Medical Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="indexstyling.css">
+</head>
+
+<body>
+<header id="top">
+    <h1>STERIL</h1>
+    <h1>Medical Services</h1>
+    <p>Professional Medical Equipment Cleaning for Hospitals</p>
+</header>
+
+<nav>
+    <a href="#top" id="logo-link"><img class="logo" src="logonavbar.png" alt="Steril Medical Services Logo"></a>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+
+    <div class="nav-links" id="nav-links">
+        <a href="index.html">Home</a>
+        <a href="ourservices.html">Services</a>
+        <a href="aboutus.html">About</a>
+        <a href="duurzaamheid.html">Duurzaamheid</a>
+        <a href="contact.html">Contact</a>
+        <div class="language-toggle1"><button id="lang-btn">NL 🇳🇱</button></div>
+    </div>
+
+    <div class="language-toggle"><button id="lang-btn2">NL 🇳🇱</button></div>
+</nav>
+
+<div class="main-layout">
+    <div class="left-column">
+        <section id="information"><h2>Information</h2></section>
+    </div>
+
+    <div class="right-column">
+
+
+        <section id="services">
+            <h2>Our Services</h2>
+            <ul>
+                <li>Sterilization of surgical instruments</li>
+                <li>Cleaning of hospital equipment</li>
+                <li>Medical device disinfection</li>
+                <li>Equipment maintenance support</li>
+            </ul>
+            <p><a href="ourservices.html">Learn more →</a></p>
+        </section>
+    
+        <section id="about">
+            <h2 id="about-title">About Us</h2>
+            <p id="about-text">
+                Steril Medical Services specializes in the cleaning and sterilization of medical equipment for hospitals and healthcare facilities.
+                We ensure that all equipment is cleaned to the highest standards, promoting safety and hygiene for patients and staff.
+            </p>
+            <a id="about-link" href="aboutus.html">Learn more →</a>
+        </section>
+
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <div class="contact-info">
+                <p>Email: info@STERILmedicalservices.com</p>
+                <p>Phone: +31 123-123-1234</p>
+                <p>Address: 123 Health St, Medical City</p>
+            </div>
+
+            <form id="contact-form">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <select name="subject" id="subject" required>
+                    <option value="" disabled selected>Select Subject</option>
+                    <option value="Sterilization of surgical instruments">Sterilization of surgical instruments</option>
+                    <option value="Cleaning of hospital equipment">Cleaning of hospital equipment</option>
+                    <option value="Medical device disinfection">Medical device disinfection</option>
+                    <option value="Equipment maintenance support">Equipment maintenance support</option>
+                    <option value="Other">Other</option>
+                </select>
+                <input type="text" id="custom-subject" placeholder="Please specify your subject" style="display:none;">
+                <textarea name="message" placeholder="Your message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <div id="form-message" style="margin-top:10px;font-weight:600;"></div>
+        </section>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Steril Medical Services. All rights reserved.</p>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+emailjs.init("KTIiO3Otv9rp59dfw");
+</script>
+
+<script>
+
+const sections = document.querySelectorAll('section');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('visible');
+    });
+}, { threshold: 0.2 });
+sections.forEach(section => observer.observe(section));
+
+
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+hamburger.addEventListener('click', () => navLinks.classList.toggle('show'));
+document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('show')));
+document.addEventListener('click', e => {
+    if(!navLinks.contains(e.target) && !hamburger.contains(e.target)) navLinks.classList.remove('show');
+});
+
+
+const langBtn = document.getElementById('lang-btn');
+const langBtn2 = document.getElementById('lang-btn2');
+let currentLang = 'en';
+function toggleLang(btn){
+    if(currentLang === 'en'){
+        document.getElementById('about-title').textContent = 'Over Ons';
+        document.getElementById('about-text').textContent = 'Steril Medical Services is gespecialiseerd in het reinigen en steriliseren van medische apparatuur voor ziekenhuizen en zorginstellingen. Wij zorgen ervoor dat alle apparatuur volgens de hoogste normen wordt gereinigd, ter bevordering van veiligheid en hygiëne voor patiënten en personeel.';
+        document.getElementById('about-link').textContent = 'Lees meer →';
+        btn.textContent = 'EN 🇬🇧';
+        currentLang = 'nl';
+    } else {
+        document.getElementById('about-title').textContent = 'About Us';
+        document.getElementById('about-text').textContent = 'Steril Medical Services specializes in the cleaning and sterilization of medical equipment for hospitals and healthcare facilities. We ensure that all equipment is cleaned to the highest standards, promoting safety and hygiene for patients and staff.';
+        document.getElementById('about-link').textContent = 'Learn more →';
+        btn.textContent = 'NL 🇳🇱';
+        currentLang = 'en';
+    }
+}
+langBtn.addEventListener('click', ()=>toggleLang(langBtn));
+langBtn2.addEventListener('click', ()=>toggleLang(langBtn2));
+
+
+const subjectSelect = document.getElementById('subject');
+const customSubjectInput = document.getElementById('custom-subject');
+subjectSelect.addEventListener('change', ()=>{
+    if(subjectSelect.value === 'Other'){
+        customSubjectInput.style.display = 'block';
+        customSubjectInput.required = true;
+    } else {
+        customSubjectInput.style.display = 'none';
+        customSubjectInput.required = false;
+        customSubjectInput.value = '';
+    }
+});
+
+
+const form = document.getElementById('contact-form');
+const formMessage = document.getElementById('form-message');
+form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const templateParams = {
+        name: form.name.value,
+        email: form.email.value,
+        subject: subjectSelect.value === 'Other' ? customSubjectInput.value : subjectSelect.value,
+        message: form.message.value
+    };
+
+    emailjs.send('service_1442lav', 'template_u7hly3i', templateParams)
+    .then(function(response) {
+        formMessage.style.color = 'black';
+        formMessage.innerText = 'Your message has been sent successfully!';
+        form.reset();
+        customSubjectInput.style.display = 'none';
+    }, function(error) {
+        formMessage.style.color = 'red';
+        formMessage.innerText = 'Oops! Something went wrong. Please try again.';
+    });
+});
+</script>
+</body>
+</html>
