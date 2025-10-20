@@ -148,6 +148,31 @@
             margin-bottom: 20px;
         }
 
+        .language-toggle1 {
+            margin-left: 20px;
+            display: none;
+        }
+
+        .language-toggle {
+            margin-left: 20px;
+        }
+
+        .language-toggle button, .language-toggle1 button {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .language-toggle button:hover, .language-toggle1 button:hover {
+            background-color: white;
+            color: var(--secondary);
+        }
+
         ul li {
             list-style: none;
             margin-bottom: 12px;
@@ -330,3 +355,4 @@
                 margin-right: 0;
             }
         }
+
